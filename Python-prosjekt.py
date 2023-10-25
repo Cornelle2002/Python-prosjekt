@@ -12,7 +12,7 @@ def main():
     first_index = 0
  
     # -----Leser input-data-----
-    k, e, f_l, p, g, nk, ne, nf_l, np, ng = input('input.txt')
+    k, e, f_l, p, g, nk, ne, nf_l, npu, ng = input('input.txt')
  
     #Kaller funksjonen og lagrer oppdatert resultat med riktig verdier                           
     knutepunkt = float_char(k)
@@ -24,10 +24,9 @@ def main():
 
     #Printer for gøy
     
-    
 
     # -----Plott initalramme-----
-    #plot_structure(ax_init, knutepunkt, elementer, 1, first_index)
+    plot_structure(ax_init, knutepunkt, elementer, 1, first_index)
  
     # -----Regner ut lengder til elementene------
     #elementlengder = lengder(knutepunkt, elementer, ne)
@@ -66,9 +65,8 @@ def main():
     #print(endemoment)
  
     #-----Plott deformert ramme-----
-    skalering = 100;     # Du kan endre denne konstanten for å skalere de synlige deformasjonene til rammen
-    rot = 1
-    plot_structure_def(ax_def, knutepunkt, elementer, 1, first_index, skalering*rot)
+    #skalering = 100;     # Du kan endre denne konstanten for å skalere de synlige deformasjonene til rammen
+    #plot_structure_def(ax_def, knutepunkt, elementer, 1, first_index, skalering*rot)
     plt.show()
 
 main()

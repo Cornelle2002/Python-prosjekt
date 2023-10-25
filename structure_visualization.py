@@ -22,11 +22,17 @@ def plot_structure(ax, punkt, elem, numbers, index_start):
 
     #Må gjøre knutepunkter fra liste til array
 
-    k, e, f_l, p, nk, ne, nf_l, np= input('input.txt')
+    k, e, f_l, p, g, nk, ne, nf_l, npu, ng = input('input.txt')
 
+    knutepunkt = float_char(k)
+    elementer = float_char(e)
     
-    punkt = np.array(k)
-    elem = np.array(e)
+    punkt = np.array(knutepunkt)
+    elem = np.array(elementer)
+
+    print(punkt)
+    print(elem)
+    
     # Change input to the correct format
     nodes = np.array(punkt[:, 0:2], copy = 1, dtype = int)
     el_nod = np.array(elem[:, 0:2], copy=1, dtype=int) + 1
