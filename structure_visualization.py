@@ -24,21 +24,18 @@ def plot_structure(ax, punkt, elem, numbers, index_start):
 
     k, e, f_l, p, nk, ne, nf_l, np= input('input.txt')
 
-    def k_to_npk():
-        npk = []
-        for i in k:
-            k[i] = k[i].pop(2)
-            npk.append(k[i])
-        npk = np.array(npk)
-        return npk
+    
 
     def e_to_ne():
         ne = []
-        
+        for i in e:
+            #Vet ikke hva som skal hentes
+            ne.append(e[i])
+        ne = np.array(ne)
         return
 
 
-    punkt = k_to_npk()
+    punkt = np.array(k)
     elem = e_to_ne()
     # Change input to the correct format
     nodes = np.array(punkt[:, 0:2], copy = 1, dtype = int)
