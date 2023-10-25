@@ -7,16 +7,18 @@ def input(file_path):
     knutepunkt = []     # Lagrer knutepunkt-verdier
     fordelte_laster = []  # Lagrer fordelte laster
     punktlaster = []    # Lagrer punktlaster
-    Elementer = []      # Lagrer elementer
+    elementer = []      # Lagrer elementer
+    geometri = []
 
     # Setter standardverdi til False for om funksjonen skal skrive ut
     print_knutepunkt = False
     print_elementer = False
     print_fordelte_laster = False
     print_punktlast = False
+    print_geometri = False
 
     # Nøkkelord funksjonen skal lete etter i tekstfilen
-    nokkelord = ['Knutepunkt', 'Elementer', 'Fordelte laster', 'Punktlaster']
+    nokkelord = ['Knutepunkt', 'Elementer', 'Fordelte laster', 'Punktlaster', 'Geometri']
 
     # Åpner tekstfilen for lesing
     with open(file_path, 'r') as file:
@@ -36,7 +38,9 @@ def input(file_path):
                 continue
             elif nokkelord[3] in line:
                 print_punktlast = True
-                continue            
+                continue  
+            elif nokkelord[4] in line:
+                print_geometri = True          
 
             # Hvis nøkkelord er funnet, legg til verdiene i respektive liste
             if print_knutepunkt:
@@ -52,17 +56,8 @@ def input(file_path):
                     print_elementer = False
                 else:
                     # Fjerner eventuelle ekstra mellomrom og linjeskift
-                    elementer = line.strip().split(', ')
-                    # Legger de to første verdiene, som utgjør elementet i data, og de påfølgende verdiene, som inneholder bjelkeinfo, i en liste i liste
-                    element_1 = int(elementer[0])
-                    element_2 = int(elementer[1])
-                    egenskaper = [int(elementer[2]), elementer[3], int(elementer[4]), int(elementer[5])]
-                    if elementer[3] == 'i':
-                        egenskaper = [int(elementer[2]), elementer[3], int(elementer[4]), int(elementer[5]), int(elementer[6]), int(elementer[7])]
-                    # Samler elementet, geometri osv. i én liste
-                    elementene = [element_1, element_2, egenskaper]
-                    Elementer.append(elementene)
-
+                    elementer.append(line.strip().split(', '))
+                    
             if print_fordelte_laster:
                 if not line.strip():
                     print_fordelte_laster = False
@@ -75,14 +70,21 @@ def input(file_path):
                 else:
                     punktlaster.append(line.strip().split(', '))
         
+            if print_geometri:
+                if not line.strip():
+                    print_geometri = False
+                else:
+                    geometri.append(line.strip().split(', '))
+        
         #FInner lengden/antall av alle verdiene
         Nknutepunkt = len(knutepunkt)   
-        Nelemeter = len(Elementer)
+        Nelemeter = len(elementer)
         Nfordelt = len(fordelte_laster)
         Npunktlaster = len(punktlaster)
+        Ngeometri = len(geometri)
 
     # Returnerer listene med de ulike verdiene
-    return knutepunkt, Elementer, fordelte_laster, punktlaster, Nknutepunkt, Nelemeter, Nfordelt, Npunktlaster
+    return knutepunkt, elementer, fordelte_laster, punktlaster, geometri, Nknutepunkt, Nelemeter, Nfordelt, Npunktlaster, Ngeometri
 
 
 #Funksjon for å verdier i lister til enten float eller char

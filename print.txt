@@ -27,6 +27,11 @@ print('Antall Knutepunkt: ')
         print(rows)
     print('\n')
 
+    print('\nGeometri: ')
+    for rows in geometri:
+        print(rows)
+    print('\n')
+
 
     for rows in elementlengder:
         print(rows)

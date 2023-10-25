@@ -12,31 +12,18 @@ def main():
     first_index = 0
  
     # -----Leser input-data-----
-    k, e, f_l, p, nk, ne, nf_l, np= input('input.txt')
+    k, e, f_l, p, g, nk, ne, nf_l, np, ng = input('input.txt')
  
     #Kaller funksjonen og lagrer oppdatert resultat med riktig verdier                           
     knutepunkt = float_char(k)
-    elementer = e
+    elementer = float_char(e)
     fordelte_laster = float_char(f_l) 
     punktlaster = float_char(p)
+    geometri = float_char(g)
 
 
     #Printer for gøy
-    def k_to_npk():
-        npk = []
-        for i in k:
-            k[i] = k[i].pop(3)
-            npk.append(k[i])
-        npk = np.array(npk)
-        return npk
     
-    npk = k_to_npk
-    knutepunkt = float_char(npk)
-
-    for i in knutepunkt:
-        print(knutepunkt[i])
-        
-
     
 
     # -----Plott initalramme-----
@@ -79,9 +66,9 @@ def main():
     #print(endemoment)
  
     #-----Plott deformert ramme-----
-    #skalering = 100;     # Du kan endre denne konstanten for å skalere de synlige deformasjonene til rammen
-    #rot = 1
-    #plot_structure_def(ax_def, knutepunkt, elementer, 1, first_index, skalering*rot)
-    #plt.show()
+    skalering = 100;     # Du kan endre denne konstanten for å skalere de synlige deformasjonene til rammen
+    rot = 1
+    plot_structure_def(ax_def, knutepunkt, elementer, 1, first_index, skalering*rot)
+    plt.show()
 
 main()
