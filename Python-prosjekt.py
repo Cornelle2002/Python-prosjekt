@@ -1,5 +1,6 @@
 from structure_visualization import *
-from Leseinn import *
+from lesinput import *
+from lengder import *
  
 # -----Rammeanalyse-----
 def main():
@@ -21,40 +22,7 @@ def main():
 
 
     #Printer for gøy
-    print('Antall Knutepunkt: ')
-    print(nk)
-
-    print('\n')
-    print('Knutepunkt: ')
-    for rows in knutepunkt:
-        print(rows)
-
-    print('\n')
-    print('Antall Elementer: ')
-    print(ne)
-
-    print('\n')
-    print('Elementer: ')
-    for rows in elementer:
-        print(rows)
-
-    print('\n')
-    print('Antall Fordelte laster: ')
-    print(nf_l)
-
-    print('\n')
-    print('Fordelte laster: ')
-    for rows in fordelte_laster:
-        print(rows)
-
-    print('\n')
-    print('Antall Punktlast: ')
-    print(np)
-
-    print('\n')
-    print('Punktlast: ')
-    for rows in punktlaster:
-        print(rows)
+    
 
     # -----Plott initalramme-----
     plot_structure(ax_init, knutepunkt, elementer, 1, first_index)

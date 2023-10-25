@@ -1,0 +1,33 @@
+print('Antall Knutepunkt: ')
+    print(nk)
+
+    print('\nKnutepunkt: ')
+    for rows in knutepunkt:
+        print(rows)
+
+    print('\nAntall Elementer: ')
+    print(ne)
+
+    print('\nElementer: ')
+    for rows in elementer:
+        print(rows)
+
+    print('\nAntall Fordelte laster: ')
+    print(nf_l)
+
+    print('\nFordelte laster: ')
+    for rows in fordelte_laster:
+        print(rows)
+
+    print('\nAntall Punktlast: ')
+    print(np)
+
+    print('\nPunktlast: ')
+    for rows in punktlaster:
+        print(rows)
+    print('\n')
+
+
+    for rows in elementlengder:
+        print(rows)
+    print('\n')
