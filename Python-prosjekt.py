@@ -57,10 +57,10 @@ def main():
         print(rows)
 
     # -----Plott initalramme-----
-    #plot_structure(ax_init, punkt, elem, 1, first_index)
+    plot_structure(ax_init, knutepunkt, elementer, 1, first_index)
  
     # -----Regner ut lengder til elementene------
-    #elementlengder = lengder(punkt, elem, nelem)
+    #elementlengder = lengder(knutepunkt, elementer, ne)
  
     # -----Fastinnspenningsmomentene------
     # Lag funksjonen selv
@@ -96,8 +96,9 @@ def main():
     #print(endemoment)
  
     #-----Plott deformert ramme-----
-    #skalering = 100;     # Du kan endre denne konstanten for å skalere de synlige deformasjonene til rammen
-    #plot_structure_def(ax_def, knutepunkt, elementer, 1, first_index, skalering*rot)
-    #plt.show()
+    skalering = 100;     # Du kan endre denne konstanten for å skalere de synlige deformasjonene til rammen
+    rot = 1
+    plot_structure_def(ax_def, knutepunkt, elementer, 1, first_index, skalering*rot)
+    plt.show()
 
 main()
