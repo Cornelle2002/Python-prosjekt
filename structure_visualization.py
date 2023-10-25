@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import CubicSpline
+
+from lesinput import *
  
 def setup_plots():
     fig_init, ax_init = plt.subplots()
@@ -17,7 +19,27 @@ def plot_structure(ax, punkt, elem, numbers, index_start):
  
     # This function plots the beam structure defined by nodes and elements
     # The bool (0 or 1) 'numbers' decides if node and element numbers are plotted or not
- 
+
+    #Må gjøre knutepunkter fra liste til array
+
+    k, e, f_l, p, nk, ne, nf_l, np= input('input.txt')
+
+    def k_to_npk():
+        npk = []
+        for i in k:
+            k[i] = k[i].pop(2)
+            npk.append(k[i])
+        npk = np.array(npk)
+        return npk
+
+    def e_to_ne():
+        ne = []
+        
+        return
+
+
+    punkt = k_to_npk()
+    elem = e_to_ne()
     # Change input to the correct format
     nodes = np.array(punkt[:, 0:2], copy = 1, dtype = int)
     el_nod = np.array(elem[:, 0:2], copy=1, dtype=int) + 1
