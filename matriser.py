@@ -52,14 +52,14 @@ def transformasjonsmatrise(rad):
     T = np.zeros((6, 6))
 
     T[0][0] = np.cos(rad)
-    T[0][1] = np.sin(rad)
+    T[0][1] = np.sin(rad) 
     T[0][2] = 0
     T[0][3] = 0
     T[0][4] = 0
     T[0][5] = 0
 
-    T[1][0] = -np.sin(rad)
-    T[1][1] = np.cos(rad)
+    T[1][0] = -np.sin(rad) 
+    T[1][1] = np.cos(rad) 
     T[1][2] = 0
     T[1][3] = 0
     T[1][4] = 0
@@ -75,15 +75,15 @@ def transformasjonsmatrise(rad):
     T[3][0] = 0
     T[3][1] = 0
     T[3][2] = 0
-    T[3][3] = np.cos(rad)
-    T[3][4] = np.sin(rad)
+    T[3][3] = np.cos(rad) 
+    T[3][4] = np.sin(rad) 
     T[3][5] = 0
 
     T[4][0] = 0
     T[4][1] = 0
     T[4][2] = 0
-    T[4][3] = -np.sin(rad)
-    T[4][4] = np.cos(rad)
+    T[4][3] = -np.sin(rad) 
+    T[4][4] = np.cos(rad) 
     T[4][5] = 0
 
     T[5][0] = 0

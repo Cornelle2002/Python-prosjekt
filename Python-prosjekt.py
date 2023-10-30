@@ -1,6 +1,8 @@
-from structure_visualization import *
 from lesinput import *
+from structure_visualization import *
 from lengder import *
+from moment import *
+from lastvektor import *
  
 # -----Rammeanalyse-----
 def main():
@@ -8,52 +10,51 @@ def main():
     fig_init, ax_init, fig_def, ax_def = setup_plots()
      
     # -----Til visualiseringen, velg første indeks brukt i nummerering av noder og element-----
-    # Endre gjerne selv
     first_index = 0
  
     # -----Leser input-data-----
-    k, e, f_l, p, g, nk, ne, nf_l, npu, ng = input('input.txt')
+    k, e, f_l, p, g, nk, ne, nf_l, npu= input('input.txt')
  
     #Kaller funksjonen og lagrer oppdatert resultat med riktig verdier                           
-    knutepunkt = float_char(k)
-    elementer = float_char(e)
-    fordelte_laster = float_char(f_l) 
-    punktlaster = float_char(p)
+    punkt = float_char(k)
+    elem = float_char(e)
+    last = float_char(f_l) 
+    punlast = float_char(p)
     geometri = float_char(g)
-
-
-    #Printer for gøy
+    npunkt = nk
+    nelem = ne
+    nlast = nf_l 
+    npunlast = npu
     
+    #Printer for gøy
 
     # -----Plott initalramme-----
-    plot_structure(ax_init, knutepunkt, elementer, 1, first_index)
+    #plot_structure(ax_init, punkt, elem, 1, first_index)
  
+    
     # -----Regner ut lengder til elementene------
-    #elementlengder = lengder(knutepunkt, elementer, ne)
+    elementlengder = lengder(punkt, elem, nelem)
  
     # -----Fastinnspenningsmomentene------
-    # Lag funksjonen selv
-    #fim = moment(npunkt, punkt, nelem, elem, nlast, last, elementlengder)
+    fim, fisk = moment(nelem, elem, nlast, last, npunlast, punlast, geometri, elementlengder)
+
+    for row in fisk:
+        print(row)
  
     # -----Setter opp lastvektor-----
-    # Lag funksjonen selv
-    #b = lastvektor(fim, npunkt, punkt, nelem, elem)
+    #b = lastvektor(nelem, elem, nlast, last, npunlast, punlast, geometri, elementlengder)
  
     # ------Setter opp systemstivhetsmatrisen-----
-    # Lag funksjonen selv
     #K = stivhet(nelem, elem, elementlengder, npunkt)
  
     # ------Innfører randbetingelser------
-    # Lag funksjonen selv
     #Kn, Bn = bc(npunkt, punkt, K, b)
  
     # -----Løser ligningssystemet------
-    # Lag funksjonen selv
     #rot = ...
     # Hint, se side for løsing av lineære systemer i Python
      
     #------Finner endemoment for hvert element-----
-    # Lag funksjonen selv
     #endemoment = endeM(npunkt, punkt, nelem, elem, elementlengder, rot, fim)
  
     #-----Skriver ut hva rotasjonen ble i de forskjellige nodene-----

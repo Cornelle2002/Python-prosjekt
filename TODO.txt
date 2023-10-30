@@ -1,0 +1,10 @@
+Lage funksjon som setter opp lastvektor
+Lage funksjon som setter opp systemstivhetsmatrisen
+Lage funksjon som innfører randbetingelser
+Lage funksjon som løser ligningssystemet
+Lage funksjon som finner endemoment
+
+
+
+
+Husk å fortelle at jeg gjorde fornadringer på input filen

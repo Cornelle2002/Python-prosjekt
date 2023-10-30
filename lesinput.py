@@ -8,7 +8,7 @@ def input(file_path):
     fordelte_laster = []  # Lagrer fordelte laster
     punktlaster = []    # Lagrer punktlaster
     elementer = []      # Lagrer elementer
-    geometri = []
+    geometri = []      # Lagrer geometri
 
     # Setter standardverdi til False for om funksjonen skal skrive ut
     print_knutepunkt = False
@@ -38,9 +38,10 @@ def input(file_path):
                 continue
             elif nokkelord[3] in line:
                 print_punktlast = True
-                continue  
+                continue   
             elif nokkelord[4] in line:
-                print_geometri = True          
+                print_geometri = True
+                continue           
 
             # Hvis nøkkelord er funnet, legg til verdiene i respektive liste
             if print_knutepunkt:
@@ -55,9 +56,8 @@ def input(file_path):
                 if not line.strip():
                     print_elementer = False
                 else:
-                    # Fjerner eventuelle ekstra mellomrom og linjeskift
                     elementer.append(line.strip().split(', '))
-                    
+
             if print_fordelte_laster:
                 if not line.strip():
                     print_fordelte_laster = False
@@ -69,7 +69,7 @@ def input(file_path):
                     print_punktlast = False
                 else:
                     punktlaster.append(line.strip().split(', '))
-        
+            
             if print_geometri:
                 if not line.strip():
                     print_geometri = False
@@ -81,10 +81,9 @@ def input(file_path):
         Nelemeter = len(elementer)
         Nfordelt = len(fordelte_laster)
         Npunktlaster = len(punktlaster)
-        Ngeometri = len(geometri)
 
     # Returnerer listene med de ulike verdiene
-    return knutepunkt, elementer, fordelte_laster, punktlaster, geometri, Nknutepunkt, Nelemeter, Nfordelt, Npunktlaster, Ngeometri
+    return knutepunkt, elementer, fordelte_laster, punktlaster, geometri, Nknutepunkt, Nelemeter, Nfordelt, Npunktlaster
 
 
 #Funksjon for å verdier i lister til enten float eller char
