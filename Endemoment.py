@@ -3,7 +3,7 @@ import numpy as np
 from matriser import *
 from verktøy import *
 
-def spenningsRes(punkt, nelem, elem, elementlengder, rot, fim, fis, EI, EA): 
+def spennings(punkt, nelem, elem, elementlengder, rot, fim, fis, EI, EA): 
     spenningsresultanter = np.zeros((nelem, 6)) # Lager 2D-liste
 
     for i in range(nelem):
@@ -39,6 +39,8 @@ def spenningsRes(punkt, nelem, elem, elementlengder, rot, fim, fis, EI, EA):
 
     return spenningsresultanter
 
+
+
 def midtM(spenningsresultanter, nlast, last, npunktlast, punktlast, nelem, elementlengder):
     midtMom = np.zeros(nelem) # Lager 1D-liste
 
@@ -49,25 +51,25 @@ def midtM(spenningsresultanter, nlast, last, npunktlast, punktlast, nelem, eleme
 
     # Legger til bidrag fra last
     for i in range(nlast):
-        id = int(last[i][0])
-        L = elementlengder[id]
+        nr = int(last[i][0])
+        L = elementlengder[nr]
         q1 = last[i][1]
         q2 = last[i][2]
 
-    # Bruker formel for midtmoment og legger til midtmoment for hver trekantlast fra q1 og q2
-    midtMom[id] += q1 * (L / 2) / (6 * L) * (2 * L ** 2 - 3 * L * L / 2 + (L / 2) ** 2)
-    midtMom[id] += q2 * (L / 2) / (6 * L) * (2 * L ** 2 - 3 * L * L / 2 + (L / 2) ** 2)
+        # Bruker formel for midtmoment og legger til midtmoment for hver trekantlast fra q1 og q2
+        midtMom[nr] += q1 * (L / 2) / (6 * L) * (2 * L ** 2 - 3 * L * L / 2 + (L / 2) ** 2)
+        midtMom[nr] += q2 * (L / 2) / (6 * L) * (2 * L ** 2 - 3 * L * L / 2 + (L / 2) ** 2)
 
-    for i in range(npunktlast):
-        id = int(punktlast[i][0])
-        P = punktlast[i][1]
-        a = punktlast[i][2]
-        L = elementlengder[id]
+        for i in range(npunktlast):
+            id = int(punktlast[i][0])
+            P = punktlast[i][1]
+            a = punktlast[i][2]
+            L = elementlengder[id]
 
-        if a == L / 2:
-            midtMom[id] += P * L / 4
-        else:
-            pass
+            if a == L / 2:
+                midtMom[nr] += P * L / 4
+            else:
+                pass
 
     return midtMom
 

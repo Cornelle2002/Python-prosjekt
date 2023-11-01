@@ -1,3 +1,5 @@
+#from tabulate import tabulate
+
 from lesinput import *
 from structure_visualization import *
 from verktøy import *
@@ -7,7 +9,6 @@ from globalstivhetsmatrise import *
 from randbetingelser import *
 from rotasjonutregning import *
 from Endemoment import *
-
 from EIEA import *
 
 
@@ -37,7 +38,7 @@ def main():
     #Printer for gøy
 
     # -----Plott initalramme-----
-    plot_structure(ax_init, punkt, elem, 1, first_index)
+    #plot_structure(ax_init, punkt, elem, 1, first_index)
 
     
     # -----Regner ut lengder til elementene------
@@ -51,27 +52,29 @@ def main():
 
     # ------Setter opp systemstivhetsmatrisen-----
     K = globalStivhetsmatrise(npunkt, punkt, nelem, elem, geometri)
+
+    for row in K:
+        print(row)
  
     # ------Innfører randbetingelser------
     Kn, Bn = bc(npunkt, punkt, K, b)
  
     # -----Løser ligningssystemet------
     rot = rotasjonsvektor(Kn, Bn)
-     
-    #------Finner endemoment for hvert element-----
-    #endemoment = endeM(npunkt, punkt, nelem, elem, elementlengder, rot, fim)
 
 
-    d = spenningsRes(punkt, nelem, elem, elementlengder, rot, fim, fisk, ei(nelem, elem, geometri), ei(nelem, elem, geometri))
- 
-    ja = midtM(d, nlast, last, npunlast, punlast, nelem, elementlengder)
+    d = spennings(punkt, nelem, elem, elementlengder, rot, fim, fisk, ei(nelem, elem, geometri), ei(nelem, elem, geometri))
+
 
     tes = midtS(d, nlast, last, nelem, elementlengder)
 
     sigma = boyespenning(tes, geometri, d, nelem, elem, ei(nelem, elem, geometri), ei(nelem, elem, geometri))
 
     maks = maks_sigma(sigma, nelem, elem, geometri)
-    
+     
+    #------Finner endemoment for hvert element-----
+    endemoment = midtM(d, nlast, last, npunlast, punlast, nelem, elementlengder)
+
     #-----Skriver ut hva rotasjonen ble i de forskjellige nodene-----
     print("Rotasjoner i de ulike punktene:")
     print(rot)
@@ -81,7 +84,7 @@ def main():
     #print(endemoment)
  
     #-----Plott deformert ramme-----
-    skalering = 100;     # Du kan endre denne konstanten for å skalere de synlige deformasjonene til rammen
+    skalering = 0.2;     # Du kan endre denne konstanten for å skalere de synlige deformasjonene til rammen
     plot_structure_def(ax_def, punkt, elem, 1, first_index, skalering*rot)
     plt.show()
 
