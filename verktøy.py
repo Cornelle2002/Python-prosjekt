@@ -1,4 +1,5 @@
 import numpy as np
+from tabulate import tabulate
 
 def lengder(knutepunkt, element, nelem):
  
@@ -34,3 +35,10 @@ def vinkel(elem, punkt):
     theta = np.arctan2(dy, dx)
 
     return theta # Returnerer vinkelen i radianer
+
+def print_fint(list, elem):
+    liste = []
+    for i in range(len(list)):
+        liste.append([int(elem[i][0]),list[i]])
+    print(tabulate(liste))
+    

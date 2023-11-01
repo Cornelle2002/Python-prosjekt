@@ -1,8 +1,8 @@
 import numpy as np
 
 def moment(nelem, elem, nlast, last, npunlast, punlast, geo, elementlengder):
-    fim = [np.zeros(2) for _ in range(nelem)]
-    fisk = [np.zeros(2) for _ in range(nelem)]
+    fim = np.zeros((nelem, 2))
+    fisk = np.zeros((nelem, 2))
 
     for i in range(nlast):
         nr = int(last[i][0])
