@@ -1,8 +1,10 @@
 from lesinput import *
 from structure_visualization import *
-from lengder import *
+from verktøy import *
 from moment import *
 from lastvektor import *
+from globalstivhetsmatrise import *
+
  
 # -----Rammeanalyse-----
 def main():
@@ -37,15 +39,12 @@ def main():
  
     # -----Fastinnspenningsmomentene------
     fim, fisk = moment(nelem, elem, nlast, last, npunlast, punlast, geometri, elementlengder)
-
-    for row in fisk:
-        print(row)
  
     # -----Setter opp lastvektor-----
-    #b = lastvektor(nelem, elem, nlast, last, npunlast, punlast, geometri, elementlengder)
- 
+    b = lastvektor(fim, fisk, npunkt, punkt, nelem, elem)
+
     # ------Setter opp systemstivhetsmatrisen-----
-    #K = stivhet(nelem, elem, elementlengder, npunkt)
+    K = globalStivhetsmatrise(npunkt, punkt, nelem, elem, geometri)
  
     # ------Innfører randbetingelser------
     #Kn, Bn = bc(npunkt, punkt, K, b)

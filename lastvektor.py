@@ -1,29 +1,21 @@
 import numpy as np
 
-def vinkel(element, punkt): 
-    p1 = element[0] # Finner punkt ende 1
-    p2 = element[1] # Finner punkt ende 2
-    dy = punkt[p2][1] - punkt[p1][1] # finner y-avstand mellom punktene
-    dx = punkt[p2][0] - punkt[p1][0] # finne x-avstand mellom punktene
-    theta = 0
+from verktøy import *
 
-    if punkt[p1][0] == punkt[p2][0] and dy > 0: # lik y-verdi gir 90 grader n˚ar dy > 0
+def lastvektor(fim, fis, npunkt, punkt, nelem, elem):
+    # Lager 1D-liste med 3 frihetsgrader * knutepunkter
+    R = np.zeros(npunkt * 3)
+    for i in range(0, nelem): # Itererer gjennom antall elementer
+        theta = vinkel(elem[i], punkt) # Finner vinkel i globalt system
 
-        theta = np.pi / 2
+        # Legger inn momentene
+        R[int(elem[i][0]) * 3 + 2] += -fim[i][0]
+        R[int(elem[i][1]) * 3 + 2] += -fim[i][1]
 
-    elif punkt[p1][0] == punkt[p2][0] and dy < 0: # lik y-verdi gir -90 grader n˚ar dy < 0
-        theta = -np.pi / 2
+        # Dekomponerer Q til horisontal og vertikal komponent i globalt system 
+        R[int(elem[i][0]) * 3 + 1] += -fis[i][0] * np.cos(theta)
+        R[int(elem[i][1]) * 3 + 1] += -fis[i][1] * np.cos(theta)
+        R[int(elem[i][0]) * 3] += -fis[i][0] * np.sin(theta)  # Endret minus til pluss her
+        R[int(elem[i][1]) * 3] += -fis[i][1] * np.sin(theta)  # Endret minus til pluss her
 
-    elif dy < 0: # n˚ar dy < 0 regnes theta ut med trigonometri 
-        theta = np.arctan2(dy, dx) + np.pi
-
-    else: 22
-    theta = np.arctan2(dy, dx)
-
-    return theta # Returnerer vinkelen i radianer
-
-
-
-def lastvektor(fim, npunkt, punkt, nelem, elem):
-    
-    return
+    return R # Returnerer lastvektor med informasjon om hvert knutepunkt

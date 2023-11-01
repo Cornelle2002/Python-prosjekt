@@ -14,8 +14,8 @@ def moment(nelem, elem, nlast, last, npunlast, punlast, geo, elementlengder):
         l = elementlengder[nr] # finner elementlengden lasten virker på
         
         # Regner ut fastinnspennningsmoment for lokal ende 1 og 2
-        Mab = -1 / 12 * q1 * l ** 2 #Deler q opp i et kvadrat og en trekant ...
-        Mba = 1 / 12 * q1 * l ** 2 #... som starter der kvadratet slutter
+        Mab = -1 / 20 * (q2 - q1) * l ** 2 #Deler q opp i et kvadrat og en trekant ...
+        Mba = 1 / 30 * (q2 - q1) * l ** 2 #... som starter der kvadratet slutter
         Mab += -1 / 30 * (q2 - q1) * l ** 2 
         Mba += 1 / 20 * (q2 - q1) * l ** 2
 
