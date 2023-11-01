@@ -15,7 +15,7 @@ def lastvektor(fim, fis, npunkt, punkt, nelem, elem):
         # Dekomponerer Q til horisontal og vertikal komponent i globalt system 
         R[int(elem[i][0]) * 3 + 1] += -fis[i][0] * np.cos(theta)
         R[int(elem[i][1]) * 3 + 1] += -fis[i][1] * np.cos(theta)
-        R[int(elem[i][0]) * 3] += -fis[i][0] * np.sin(theta)  # Endret minus til pluss her
-        R[int(elem[i][1]) * 3] += -fis[i][1] * np.sin(theta)  # Endret minus til pluss her
+        R[int(elem[i][0]) * 3] += -fis[i][0] * np.sin(theta)
+        R[int(elem[i][1]) * 3] += -fis[i][1] * np.sin(theta)
 
     return R # Returnerer lastvektor med informasjon om hvert knutepunkt

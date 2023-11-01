@@ -1,0 +1,33 @@
+Nknutepunkt
+2
+
+[x-koordinat, y-koordinat, innspenning(fast innspent = 1 og fri = 0)]
+Knutepunkt
+0, 0, 1
+30, 0, 1
+
+Nelementer
+1
+
+[start knutepunkt, slutt knutepunkt, e-modul, geometri]
+Elementer
+0, 1, 210000000000, 1
+
+[nummer, ytre diameter, tykkelse, høyde, bredde, flenstykkelse, stegtykkelse]
+Geometri
+1, 0, 0, 0.5, 0.5, 0, 0.03
+
+Nforlaster
+1
+
+[element[nr], lastintensitet 1[N/m], lastintensitet 2[N/m]]
+Fordelte laster
+1, 500000, 500000
+
+
+Npunktlaster
+1
+
+[element[nr], punktlast[N], lengde fra venste[m]]
+Punktlaster
+1, 500000, 7.5
