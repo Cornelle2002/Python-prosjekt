@@ -7,12 +7,3 @@ def rotasjonsvektor(Kn, Bn):
     rot = Kn_inv @ Bn 
 
     return rot 
-
-def rotasjonsvektor2(Kn, Bn, npunkt):
-    Kn_inv = np.linalg.pinv(Kn)
-    rot = Kn_inv @ Bn
-    rot2 = np.zeros([npunkt])
-    for i in range(npunkt):
-        rot2[i] = (rot[i * 3 + 2])
-    
-    return rot2
