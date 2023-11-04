@@ -44,11 +44,10 @@ def main():
 
     # -----Setter opp lastvektor-----
     b = lastvektor(fim, fisk, npunkt, punkt, nelem, elem)
-    print(b)
 
     # ------Setter opp systemstivhetsmatrisen-----
     K = globalStivhetsmatrise(npunkt, punkt, nelem, elem, geometri)
-    #print(len(K))
+
  
     # ------Innfører randbetingelser------
     Kn, Bn = bc(npunkt, punkt, K, b)
@@ -56,13 +55,16 @@ def main():
     #print(Bn)
  
     # -----Løser ligningssystemet------
-    rot = rotasjonsvektor(Kn, Bn)
+    defo = deformansjon(Kn, Bn)
+    #rot = rotasjon(defo, npunkt)
+    print(defo)
+    #print(rot)
      
     # -----Plott initalramme-----
-    spen = spennings(punkt, nelem, elem, elementlengder, rot, fim, fisk, ei(nelem, elem, geometri), ei(nelem, elem, geometri))
+    #spen = spennings(punkt, nelem, elem, elementlengder, rot, fim, fisk, ei(nelem, elem, geometri), ei(nelem, elem, geometri))
     
     #------Finner endemoment for hvert element-----
-    endemoment = midtM(spen, nlast, last, npunlast, punlast, nelem, elementlengder)
+    #endemoment = midtM(spen, nlast, last, npunlast, punlast, nelem, elementlengder)
 
     #-----Skriver ut hva rotasjonen ble i de forskjellige nodene-----
     print("Rotasjoner i de ulike punktene:")
@@ -74,8 +76,8 @@ def main():
     #print(len(endemoment))
  
     #-----Plott deformert ramme-----
-    skalering = 150 
-    plot_structure_def(ax_def, punkt, elem, 1, first_index, skalering*rot)
+    skalering = 150
+    plot_structure_def(ax_def, punkt, elem, 1, first_index, skalering*defo)
     plt.show()
 
 main()

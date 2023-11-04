@@ -2,8 +2,8 @@ import numpy as np
 from numpy.linalg import inv
 from randbetingelser import *
 
-def rotasjonsvektor(Kn, Bn):
+def deformansjon(Kn, Bn):
     Kn_inv = np.linalg.pinv(Kn)
-    rot = Kn_inv @ Bn 
+    defo = Kn_inv @ Bn
 
-    return rot 
+    return defo

@@ -1,7 +1,0 @@
-Lage funksjon som innfører randbetingelser
-Lage funksjon som løser ligningssystemet
-Lage funksjon som finner endemoment
-
-
-
-Husk å fortelle at jeg gjorde fornadringer på input filen

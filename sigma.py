@@ -68,7 +68,7 @@ def maks_sigma(sigma, nelem, elem, geo):
     sigma_maks = np.zeros((len(geo), 3)) # [element nr, verdi, ende1/midt/ende2]
 
     for i in range(nelem):
-        geom = int(elem[i][3]) - 1 # indeksering i tverrsnitt/geomentri begynner p˚a 1
+        geom = int(elem[i][3]) - 1 # indeksering i tverrsnitt/geomentri begynner på 1
 
     for j in range(3):
         if abs(sigma[i][j]) > sigma_maks[geom][1]:
