@@ -14,14 +14,14 @@ def setup_plots():
     ax_def.axes.set_aspect('equal')
     return fig_init, ax_init, fig_def, ax_def
  
-def plot_structure(ax, punkt, elem, numbers, index_start):
+def plot_structure(ax, punkt, elem, numbers, index_start, file):
     # This is a translation of the original function written by Josef Kiendl in Matlab
     # It has been slightly modified in order to be used in TMR4176
  
     # This function plots the beam structure defined by nodes and elements
     # The bool (0 or 1) 'numbers' decides if node and element numbers are plotted or not
     
-    k, e, f_l, p, g, nk, ne, nf_l, npu= input('input.txt')
+    k, e, f_l, p, g, nk, ne, nf_l, npu= input(file)
 
     punkt = float_char(k)
     elem = float_char(e)
@@ -52,12 +52,12 @@ def plot_structure(ax, punkt, elem, numbers, index_start):
             ax.text(nodes[inod, 0], nodes[inod, 1], str(inod + index_start), color = 'red', fontsize = 16)
  
  
-def plot_structure_def(ax, punkt, elem, numbers, index_start, r):
+def plot_structure_def(ax, punkt, elem, numbers, index_start, r, file):
     # This is a translation of the original function written by Josef Kiendl in Matlab
     # This function plots the deformed beam structure defined by nodes and elements
     # The bool (0 or 1) 'numbers' decides if node and element numbers are plotted or not
  
-    k, e, f_l, p, g, nk, ne, nf_l, npu= input('input.txt')
+    k, e, f_l, p, g, nk, ne, nf_l, npu= input(file)
 
     punkt = float_char(k)
     elem = float_char(e)
@@ -68,7 +68,7 @@ def plot_structure_def(ax, punkt, elem, numbers, index_start, r):
     # Change input to the correct format
     nodes = np.array(punkt[:, 0:2], copy = 1, dtype = int)
     el_nod = np.array(elem[:, 0:2], copy=1, dtype=int) + 1
-    nod_dof = np.arange(1, nodes.shape[0] + 1, 1, dtype=int)
+    nod_dof = np.arange(0, nodes.shape[0] + 1, 1, dtype=int)
  
     if numbers == 1:
         # Plot node number
