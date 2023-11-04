@@ -1,6 +1,6 @@
 import numpy as np
 
-def moment(nelem, elem, nlast, last, npunlast, punlast, geo, elementlengder):
+def fastinnspenningskrefter(nelem, elem, nlast, last, npunlast, punlast, geo, elementlengder):
     fim = np.zeros((nelem, 2))
     fisk = np.zeros((nelem, 2))
 

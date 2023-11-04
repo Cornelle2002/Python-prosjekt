@@ -40,20 +40,20 @@ def main():
     elementlengder = lengder(punkt, elem, nelem)
  
     # -----Fastinnspenningsmomentene------
-    fim, fisk = moment(nelem, elem, nlast, last, npunlast, punlast, geometri, elementlengder)
+    fim, fisk = fastinnspenningskrefter(nelem, elem, nlast, last, npunlast, punlast, geometri, elementlengder)
 
     # -----Setter opp lastvektor-----
     b = lastvektor(fim, fisk, npunkt, punkt, nelem, elem)
-    print(len(b))
+    print(b)
 
     # ------Setter opp systemstivhetsmatrisen-----
     K = globalStivhetsmatrise(npunkt, punkt, nelem, elem, geometri)
-    print(len(K))
+    #print(len(K))
  
     # ------Innfører randbetingelser------
     Kn, Bn = bc(npunkt, punkt, K, b)
-    print(len(Kn))
-    print(len(Bn))
+    #print(len(Kn))
+    #print(Bn)
  
     # -----Løser ligningssystemet------
     rot = rotasjonsvektor(Kn, Bn)
@@ -66,14 +66,15 @@ def main():
 
     #-----Skriver ut hva rotasjonen ble i de forskjellige nodene-----
     print("Rotasjoner i de ulike punktene:")
-    print(len(rot))
+    #print(len(rot))
+
  
     #-----Skriver ut hva momentene ble for de forskjellige elementene-----
     print("Elementvis endemoment:")
-    print(len(endemoment))
+    #print(len(endemoment))
  
     #-----Plott deformert ramme-----
-    skalering = 150
+    skalering = 150 
     plot_structure_def(ax_def, punkt, elem, 1, first_index, skalering*rot)
     plt.show()
 
