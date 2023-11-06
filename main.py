@@ -9,6 +9,7 @@ from randbetingelser import *
 from rotasjon import *
 from endemoment import *
 from maxkrafter import *
+from flyt import *
 
 
 
@@ -66,14 +67,16 @@ def main():
     #------Finner endemoment for hvert element-----
     endem = endemoment(punkt, nelem, elem, geometri, L, r, EI, EA)
     print("Elementvis endemoment:")
-    for i in range(len(endem)):
-        print(f'{endem[i][0]}')
-    
-    max_sk = max_skjaer(nelem, endem)
-    max_n = max_aksial(nelem, endem)
-    max_m = max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengder)
+    #for i in range(len(endem)):
+    #    print(f'Element {i} : {endem[i]}')
 
     #------Finner maxmoment for hvert element-----
+    max_m = max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengder)
+    max_sk = max_skjaer(nelem, endem)
+    max_n = max_aksial(nelem, endem)
+
+    #-----Finner flytspenningen for elementene-------
+    fy = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI)
 
     #-----Skriver ut hva rotasjonen ble i de forskjellige nodene-----
     skalering = 50

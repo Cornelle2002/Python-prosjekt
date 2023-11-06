@@ -1,16 +1,11 @@
 import numpy as np
 
 from matriser import *
-from EIEA import *
 from verktøy import *
 
 
-def endemoment(punkt, nelem, elem, geo, L, r, EI, EA):
-    endeM = np.empty((nelem, 6)) 
-
-    EI = ei(nelem, elem, geo)
-    EA = ea(nelem, elem, geo)
-    l = lengder(punkt, elem, nelem)
+def endemoment(punkt, nelem, elem, L, r, EI, EA):
+    endeM = np.empty((nelem, 6))
 
     for i in range(nelem):
         n1 = int(elem[i][0])
@@ -34,7 +29,7 @@ def endemoment(punkt, nelem, elem, geo, L, r, EI, EA):
         L_tot = T*np.transpose(np.matrix(L_tot))
 
         temp_r = np.transpose(np.matrix(r[i]))
-        k = np.matrix(lokal_matrise(EI[i], EA[i], l[i]))
+        k = np.matrix(lokal_matrise(EI[i], EA[i], L[i]))
 
 
         S = k*L_tot + temp_r

@@ -12,7 +12,7 @@ def max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengde
 
         #Henter fordeltlast i elementets knutepunkt og elementlengde
         nr = int(last[el][0])
-        l = elementlengder(nr)
+        l = elementlengder[nr]
         q_1 = int(last[el][1])
         q_2 = int(last[el][2])
         
