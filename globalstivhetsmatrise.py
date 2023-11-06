@@ -5,26 +5,32 @@ from verktøy import *
 from matriser import *
 
 def globalStivhetsmatrise(npunkt, punkt, nelem, elem, geo): 
+    K =  np.zeros((3 * npunkt, 3 * npunkt)) 
 
-    K = np.zeros((3 * npunkt, 3 * npunkt)) # Oppretter 2D-vektor 30x30
-    EI = ei(nelem, elem, geo) # Finner EI-liste
-    EA = ea(nelem, elem, geo) # Finner EA-liste
-    L = lengder(punkt, elem, nelem) # Finner elementlengde-liste
+    EI = ei(nelem, elem, geo)
+    EA = ea(nelem, elem, geo)
+    L = lengder(punkt, elem, nelem)
+    
+    for n in range(nelem):
 
-    for i in range(nelem): # Ittererer gjennom elementene
-        k = lokal_matrise(EI[i], EA[i], L[i]) # Oppretter lokalstivhetsmatrise for hvert element
-        vinkel_rad = vinkel(elem[i], punkt)
-        T = transformasjonsmatrise(vinkel_rad)
-        T_Transponert = np.linalg.inv(T)
-        k_g = T @ k @ T_Transponert
-        n1 = int(elem[i][0])
-        n2 = int(elem[i][1])
+        glob_frihet = []
 
-        for rad in range(0, 3):
-            for col in range(0, 3):
-                K[n1 * 3 + rad][n1 * 3 + col] += k_g[rad][col]
-                K[n1 * 3 + rad][n2 * 3 + col] += k_g[rad][col + 3]
-                K[n2 * 3 + rad][n2 * 3 + col] += k_g[rad + 3][col + 3]
-                K[n2 * 3 + rad][n1 * 3 + col] += k_g[rad + 3][col]
+        n1 = int(elem[n][0])
+        n2 = int(elem[n][1])
+
+        for j in range(3):
+            glob_frihet.append(3*(n1) + (j))
+        
+        for j in range(3):
+            glob_frihet.append(3*(n2) + (j))
+
+        k = lokal_matrise(EI[n], EA[n], L[n])
+        theta = vinkel(elem[n], punkt)
+        T = transformasjonsmatrise(theta)
+        k_g = np.transpose(T) @ k @ T
+
+        for m in range(len(k_g)):
+                for o in range(len(k_g)):
+                    K[glob_frihet[m]][glob_frihet[o]] += k_g.item(m,o)
 
     return K # Returnerer global stivhetsmatrise 
