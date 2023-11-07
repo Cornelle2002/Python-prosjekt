@@ -53,7 +53,7 @@ def iterasjon(sigma, nelem, elem, geo):
         if el == 0:          #Hvilken geometri vi ser på
             if elem[max_fy_nr[el]][2] == E_st:  #Sjekker at elementet er av stål
                 while max_fy[el] > fy_st_inn:   #Sjekker om elementet maks flytspenning er større en maks flyt for stål
-                    geo[0][2] += 1      # Legget til en 
+                    geo[0][2] += 1      # Legget til en mm
                     if geo[0][2] == (geo[0][1]/2):  #Sjekker om tykkelsen overskrider diameteren
                         print('Geometri 1: Tykkelse overskrifer diameterens dimensjoner')
                         tver_ho.append(geo[0][1])   #Hvis det overskrides så printes error og dimensjonene legges inn i lister
@@ -64,7 +64,7 @@ def iterasjon(sigma, nelem, elem, geo):
                     tver_ho.append(geo[0][2])
             else:                               #Hvis det ikke er av stål så er det av aluminium
                 while max_fy[el] > fy_al_inn:   #Sjekker om elementet maks flytspenning er større en maks flyt for aluminium
-                    geo[0][2] += 1      # Legget til en 
+                    geo[0][2] += 1      # Legget til en mm
                     if geo[0][2] == (geo[0][1]/2):  #Sjekker om tykkelsen overskrider diameteren
                         print('Geometri 1: Tykkelse overskrifer diameterens dimensjoner')
                         tver_ho.append(geo[0][1])   #Hvis det overskrides så printes error og dimensjonene legges inn i lister
@@ -78,7 +78,7 @@ def iterasjon(sigma, nelem, elem, geo):
         elif el == 1: # Det samme reppeteres som i if løkken over, men med hensyn på elementet med max spenning med geometri 2
             if elem[max_fy_nr[el]][2] == E_st:
                 while max_fy[el] > fy_st_inn:
-                    geo[1][2] += 1      # Legget til en 
+                    geo[1][2] += 1      # Legget til en mm
                     if geo[1][2] == (geo[1][1]/2):
                         print('Geometri 2: Tykkelse overskrifer diameterens dimensjoner')
                         tver_jack.append(geo[1][1])
@@ -103,7 +103,7 @@ def iterasjon(sigma, nelem, elem, geo):
         elif el == 2: # Det samme reppeteres som i  første if løkken, men med hensyn på elementet med max spenning med geometri 3
             if elem[max_fy_nr[el]][2] == E_st:
                 while max_fy[el] > fy_st_inn:
-                    geo[2][2] += 1      # Legget til en 
+                    geo[2][2] += 1      # Legget til en mm
                     if geo[2][2] == (geo[2][1]/2):
                         print('Geometri 3: Tykkelse overskrifer diameterens dimensjoner')
                         tver_ver.append(geo[2][1])
@@ -128,7 +128,7 @@ def iterasjon(sigma, nelem, elem, geo):
         elif el == 3: # Det samme reppeteres som i første if løkken, men med hensyn på elementet med max spenning med geometri 4
             if elem[max_fy_nr[el]][2] == E_st: 
                 while max_fy[el] > fy_st_inn:
-                    geo[3][6] += 1      # Legget til en 
+                    geo[3][6] += 1      # Legget til en mm
                     if geo[3][6] == (geo[3][3]/2): #Sjekker om tykkelsen overskrider høyden
                         print('Geometri 4: Tykkelse overskrifer høyde dimensjoner')
                         tver_k.append(geo[3][3])
@@ -157,8 +157,8 @@ def iterasjon(sigma, nelem, elem, geo):
         elif el == 4: # Det samme reppeteres som i første if løkken, men med hensyn på elementet med max spenning med geometri 5
             if elem[max_fy_nr[el]][2] == E_st:
                 while max_fy[el] > fy_st_inn:
-                    geo[4][5] += 1      # Legget til en 
-                    geo[4][6] += 1      # Legget til en 
+                    geo[4][5] += 1      # Legget til en mm
+                    geo[4][6] += 1      # Legget til en mm
                     if geo[4][5] == (geo[4][3]):    #Stopper iterasjonen når steg tykkelsen overskrider steg høyden
                         print('Geometri 5: Tykkelse overskrifer stag høydens dimensjoner')
                         tver_i.append(geo[4][3])
@@ -175,8 +175,8 @@ def iterasjon(sigma, nelem, elem, geo):
 
 
                 while max_fy[el] > fy_al_inn:
-                    geo[4][5] += 1      # Legget til en 
-                    geo[4][6] += 1      # Legget til en 
+                    geo[4][5] += 1      # Legget til en mm
+                    geo[4][6] += 1      # Legget til en mm
                     if geo[4][5] == (geo[4][3]):
                         print('Geometri 5: Tykkelse overskrifer stag høydens dimensjoner')
                         tver_i.append(geo[4][3])
