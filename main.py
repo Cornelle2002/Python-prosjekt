@@ -9,10 +9,10 @@ from matriser import *
 from globalstivhetsmatrise import *                 
 from randbetingelser import *                       
 from rotasjon import *
-from endemoment import *                            #
-from maxkrafter import *                            #
+from endekrefter import *
+from maxkrafter import *
 from flyt import * 
-from iterasjon import *                             #
+from iterasjon import * 
 
 
 
@@ -69,12 +69,12 @@ def main():
     L = np.linalg.inv(K)*np.transpose(tot_R)
 
     #------Finner endemoment for hvert element-----
-    endem = endemoment(punkt, nelem, elem, L, r, EI, EA)
+    endeK = endekrefter(punkt, nelem, elem, L, r, EI, EA)
 
     #------Finner maxmoment for hvert element-----
-    max_m = max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengder)
-    max_sk = max_skjaer(nelem, endem)
-    max_n = max_aksial(nelem, endem)
+    max_m = max_moment(endeK, nelem, elem, nlast, last, npunlast, punlast, elementlengder)
+    max_sk = max_skjaer(nelem, endeK)
+    max_n = max_aksial(nelem, endeK)
 
     #-----Finner flytspenningen for elementene-------
     sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI, EA)
