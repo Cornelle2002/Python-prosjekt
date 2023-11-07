@@ -4,7 +4,8 @@ from endemoment import *
 
 
 def max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengder):
-    m_tot = np.zeros(nelem)
+    # Null liste for maks moment for hvert element
+    m_tot = np.zeros(nelem) 
     
     for el in range(nlast):
         #Liste for å holde moment for hver iterasjon
@@ -87,29 +88,29 @@ def max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengde
         
         m_tot[nr] = max(temp_m)
         
-    return m_tot
+    return m_tot #Returnerer liste med maks moment for hvert element
 
 def max_skjaer(nelem, endem):
-
+    # Null liste for maks skjær for hvert element
     q_tot = np.zeros(nelem)
 
     for i in range(nelem):
-        if abs(endem[i][1]) >= abs(endem[i][4]):
-            q_tot[i] = abs(endem[i][1])
+        if abs(endem[i][1]) >= abs(endem[i][4]): #Skjær er størst i et av endepunktene
+            q_tot[i] = abs(endem[i][1])          #Legger til listen hvis det er i knutepunkt 1
         else:
-            q_tot[i] = abs(endem[i][4])
+            q_tot[i] = abs(endem[i][4])          #Legger til listen hvis det er i knutepunkt 2
 
-    return q_tot
+    return q_tot #Returnerer liste med maks skjærkraft for hvert element
         
 
 def max_aksial(nelem, endem):
-
+    # Null liste for maks skjær for hvert element
     n_tot = np.zeros(nelem)
 
-    for i in range(nelem):
+    for i in range(nelem):            #Normalkraft er konstant over elementet, hentes fra knutepunkt 1
         n_tot[i] = abs(endem[i][0])
 
-    return n_tot
+    return n_tot #Returnerer liste med maks normalkraft for hvert element
     
 
 

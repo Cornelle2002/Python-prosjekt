@@ -55,7 +55,7 @@ def main():
     
     # -----Setter opp lastvektor-----
     R = lastvektor(r, npunkt, punkt, nelem, elem)
-    R1 = punktkrafeter(elem, npunkt, punkt, npunlast, punlast, elementlengder)
+    R1 = punktkrefter(elem, npunkt, punkt, npunlast, punlast, elementlengder)
     tot_R = np.matrix(R1 - R)
 
 

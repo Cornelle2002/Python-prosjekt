@@ -26,7 +26,7 @@ def lastvektor(r, npunkt, punkt, nelem, elem):
 
     return R # Returnerer lastvektor med informasjon om hvert knutepunkt
 
-def punktkrafeter(elem, npunkt, punkt, npunlast, punlast, elementlengder):
+def punktkrefter(elem, npunkt, punkt, npunlast, punlast, elementlengder):
     R1 = np.zeros(npunkt*3)                    # Lager liste med 3 frihetsgrader [N, S, M] per knutepunkt
 
     for i in range(npunlast):                  # Itererer gjennom antall punktlast
