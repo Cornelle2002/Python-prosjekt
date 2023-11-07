@@ -1,17 +1,17 @@
-from lesinput import *                              #Kommentar
-from structure_visualization import *               #Kommentar
-from verktøy import *                               #Kommentar
-from fastinnspenning import *                       #Kommentar
-from lastvektor import *                            #
-from tverrsnitt import *                            #Kommentar
-from EIEA import *                                  #Kommentar
-from matriser import *                              #Kommentar
-from globalstivhetsmatrise import *                 #
-from randbetingelser import *                       #
-from rotasjon import *                              #
+from lesinput import *  
+from structure_visualization import *  
+from verktøy import *                   
+from fastinnspenning import *          
+from lastvektor import *             
+from tverrsnitt import *      
+from EIEA import *               
+from matriser import *                             
+from globalstivhetsmatrise import *                 
+from randbetingelser import *                       
+from rotasjon import *
 from endemoment import *                            #
 from maxkrafter import *                            #
-from flyt import *                                  #Kommentar
+from flyt import * 
 from iterasjon import *                             #
 
 
@@ -60,7 +60,7 @@ def main():
 
 
     # ------Setter opp systemstivhetsmatrisen-----
-    K = globalStivhetsmatrise(npunkt, punkt, nelem, elem, geometri)
+    K = globalStivhetsmatrise(npunkt, punkt, nelem, elem, geometri, EI, EA, elementlengder)
 
     # ------Innfører randbetingelser------
     K = randbetingelser(npunkt, punkt, K)
@@ -70,7 +70,6 @@ def main():
 
     #------Finner endemoment for hvert element-----
     endem = endemoment(punkt, nelem, elem, L, r, EI, EA)
-    #print("Elementvis endemoment:")
 
     #------Finner maxmoment for hvert element-----
     max_m = max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengder)
@@ -93,6 +92,6 @@ def main():
  
     #-----Plott deformert ramme-----
     plot_structure_def(ax_def, punkt, elem, 1, first_index, rot, file)
-    plt.show()
+    #plt.show()
 
 main()

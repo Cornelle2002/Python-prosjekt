@@ -2,12 +2,11 @@ import numpy as np
 
 def rotasjoner(npunkt, L, skalering):
 
-    rot = []
+    rot = []                                            # Lager liste for rotasjons elementene
     
-    #Henter ut hvert tredje element i b
-    for x in range(npunkt):
-        for y in range(3):
-            if y == 2:
-                rot.append(L.item(x * 3 + y)*skalering)
+    for x in range(npunkt):                             # Itererer gjennom knutepunktene
+        for y in range(3): 
+            if y == 2:                                  # Henter ut hvert tredje elemetn fra L
+                rot.append(L.item(x * 3 + y)*skalering) # Setter rotasjons elemnetet inn i listen
                 
-    return rot
+    return rot # Returnerer listen med rotasjons elementene
