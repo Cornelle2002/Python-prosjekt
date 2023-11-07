@@ -2,18 +2,18 @@ import numpy as np
 
 from tverrsnitt import *
 
-def sigma_flyt(max_m, max_n, nelem, elem, geo, EI):
+def sigma_flyt(max_m, max_n, nelem, elem, geo, EI, EA):
     sigma = np.zeros(nelem)
     
     for el in range(nelem):
         moment = max_m[el]
         normal = max_n[el]
         E = elem[el][2]
-        EI = EI[el]
-        EA = EA[el]
+        ei = EI[el]
+        ea = EA[el]
 
-        I = EI/E
-        A = EA/A
+        I = ei/E
+        A = ea/E
 
         geo_nr = elem[el][3]
         z = 0

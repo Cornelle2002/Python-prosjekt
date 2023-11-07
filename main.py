@@ -22,7 +22,7 @@ def main():
     first_index = 0
  
     # -----Leser input-data-----
-    file = 'input_ramme.txt'
+    file = 'input_opp.txt'
     k, e, f_l, p, g, nk, ne, nf_l, npu = input(file)
  
     #Kaller funksjonen og lagrer oppdatert resultat med riktig verdier                           
@@ -65,8 +65,8 @@ def main():
     L = np.linalg.inv(K)*np.transpose(tot_R)
 
     #------Finner endemoment for hvert element-----
-    endem = endemoment(punkt, nelem, elem, geometri, L, r, EI, EA)
-    print("Elementvis endemoment:")
+    endem = endemoment(punkt, nelem, elem, L, r, EI, EA)
+    #print("Elementvis endemoment:")
     #for i in range(len(endem)):
     #    print(f'Element {i} : {endem[i]}')
 
@@ -76,7 +76,8 @@ def main():
     max_n = max_aksial(nelem, endem)
 
     #-----Finner flytspenningen for elementene-------
-    fy = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI)
+    fy = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI, EA)
+    print(fy)
 
     #-----Skriver ut hva rotasjonen ble i de forskjellige nodene-----
     skalering = 50

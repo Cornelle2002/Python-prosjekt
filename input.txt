@@ -70,20 +70,8 @@ Fordelte laster
 Npunktlaster
 3
 
-[element[nr], punktlast[N](negativ for den peker nedover), lengde fra venste[m]]
+[element[nr], punktlast[N], lengde fra venste[m]]
 Punktlaster
 21, 5000000, 0
 21, 1400000, 6
 21, 5000000, 12
-
-
-
-
-for i in range(len(max_m)):
-        print(max_m[i])
-    print('\n')
-    for i in range(len(max_sk)):
-        print(max_sk[i])
-    print('\n')
-    for i in range(len(max_n)):
-        print(max_n[i])
