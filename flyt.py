@@ -7,13 +7,17 @@ def sigma_flyt(max_m, max_n, nelem, elem, geo, EI, EA):
     
     for el in range(nelem):
         moment = max_m[el]
+        print(moment)
         normal = max_n[el]
+        print(normal)
         E = elem[el][2]
         ei = EI[el]
         ea = EA[el]
 
         I = ei/E
+        print(I)
         A = ea/E
+        print(A)
 
         geo_nr = elem[el][3]
         z = 0

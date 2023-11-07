@@ -6,8 +6,8 @@ def i_iprofil(h, b, f, s):
     #f - flenstykkelse
     #s - stegtykkelse
 
-    steg = (s * (h - (2*f))**3)/12
-    flens = (b * (f)**3)/12
+    steg = (s * h**3)/12
+    flens = (b * f**3)/12
     tverr = flens + steg + flens
 
     return tverr
@@ -37,7 +37,7 @@ def a_iprofil(h, b, f, s):
     #f - flenstykkelse
     #s - stegtykkelse
 
-    steg = (h - 2*f) * s
+    steg = h * s
     flens = b * f
     areal = flens + steg + flens
 

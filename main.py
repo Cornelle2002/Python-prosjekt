@@ -22,7 +22,7 @@ def main():
     first_index = 0
  
     # -----Leser input-data-----
-    file = 'input_opp.txt'
+    file = 'input_ramme.txt'
     k, e, f_l, p, g, nk, ne, nf_l, npu = input(file)
  
     #Kaller funksjonen og lagrer oppdatert resultat med riktig verdier                           
