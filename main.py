@@ -11,6 +11,7 @@ from randbetingelser import *
 from rotasjon import *
 from endekrefter import *
 from maxkrafter import *
+from plot import *
 from flyt import * 
 from iterasjon import * 
 
@@ -25,7 +26,7 @@ def main():
     first_index = 0
  
     # -----Leser input-data-----
-    file = 'input.txt'
+    file = 'input_konstruksjon.txt'
     
     k, e, f_l, p, g, nk, ne, nf_l, npu = input(file)
  
@@ -41,7 +42,7 @@ def main():
     npunlast = npu
 
     # -----Plott initalramme-----
-    plot_structure(ax_init, punkt, elem, 1, first_index, file)
+    #plot_structure(ax_init, punkt, elem, 1, first_index, file)
 
     # -----Regner ut lengder til elementene------
     elementlengder = lengder(punkt, elem, nelem)
@@ -76,9 +77,12 @@ def main():
     max_sk = max_skjaer(nelem, endeK)
     max_n = max_aksial(nelem, endeK)
 
+    #------Plotter moment, skjærkraft og normalkraft for hvert element------
+    plotting(endeK, nelem, nlast, last, npunlast, punlast, elementlengder)
+
     #-----Finner flytspenningen for elementene-------
-    sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI, EA)
-    sigma = [sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i]
+    #sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI, EA)
+    #sigma = [sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i]
     
     #-----Tverrsnittsdimensjonene etter iterasjon-----
     #tverr = iterasjon(sigma, nelem, elem, geometri)
@@ -91,7 +95,7 @@ def main():
     #print(rot)
  
     #-----Plott deformert ramme-----
-    plot_structure_def(ax_def, punkt, elem, 1, first_index, rot, file)
-    #plt.show()
+    #plot_structure_def(ax_def, punkt, elem, 1, first_index, rot, file)
+    plt.show()
 
 main()

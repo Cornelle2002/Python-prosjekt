@@ -1,6 +1,6 @@
 import numpy as np
 
-from endemoment import *
+from endekrefter import *
 
 
 def max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengder):
