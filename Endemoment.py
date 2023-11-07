@@ -5,7 +5,7 @@ from verktøy import *
 
 
 def endemoment(punkt, nelem, elem, L, r, EI, EA):
-    endeM = np.empty((nelem, 6))
+    endeM = np.empty((nelem, 6)) #Lager en tom liste
 
     for i in range(nelem):
         n1 = int(elem[i][0])
@@ -13,7 +13,6 @@ def endemoment(punkt, nelem, elem, L, r, EI, EA):
 
         L_1 = L[(n1 * 3) : ((n1 * 3) + 3)]
         L_2 = L[(n2 * 3) : ((n2 * 3) + 3)]
-
 
         L_tot = np.zeros(6)
 

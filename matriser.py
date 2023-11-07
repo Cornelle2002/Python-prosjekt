@@ -1,7 +1,9 @@
 import numpy as np
 
+
+#Lager lokal stivhetmatrise 
 def lokal_matrise(EI, EA, L):
-    #Lager lokal stivhetmatrise for 
+    
     k = np.zeros((6, 6))
 
     k[0][0] = EA / L 
@@ -48,6 +50,8 @@ def lokal_matrise(EI, EA, L):
 
     return k # returnerer lokal stivhetsmatrise
 
+
+#Lager transformasjonsmatrisen
 def transformasjonsmatrise(rad):
     T = np.zeros((6, 6))
 

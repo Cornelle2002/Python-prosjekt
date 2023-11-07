@@ -1,15 +1,18 @@
-from lesinput import *
-from structure_visualization import *
-from verktøy import *
-from fastinnspenning import *
-from lastvektor import *
-from EIEA import *
-from globalstivhetsmatrise import *
-from randbetingelser import *
-from rotasjon import *
-from endemoment import *
-from maxkrafter import *
-from flyt import *
+from lesinput import *                              #Kommentar
+from structure_visualization import *               #Kommentar
+from verktøy import *                               #Kommentar
+from fastinnspenning import *                       #Kommentar
+from lastvektor import *                            #
+from tverrsnitt import *                            #Kommentar
+from EIEA import *                                  #Kommentar
+from matriser import *                              #Kommentar
+from globalstivhetsmatrise import *                 #
+from randbetingelser import *                       #
+from rotasjon import *                              #
+from endemoment import *                            #
+from maxkrafter import *                            #
+from flyt import *                                  #Kommentar
+from iterasjon import *                             #
 
 
 
@@ -22,7 +25,7 @@ def main():
     first_index = 0
  
     # -----Leser input-data-----
-    file = 'input_opp.txt'
+    file = 'input.txt'
     k, e, f_l, p, g, nk, ne, nf_l, npu = input(file)
  
     #Kaller funksjonen og lagrer oppdatert resultat med riktig verdier                           
@@ -67,8 +70,6 @@ def main():
     #------Finner endemoment for hvert element-----
     endem = endemoment(punkt, nelem, elem, L, r, EI, EA)
     #print("Elementvis endemoment:")
-    #for i in range(len(endem)):
-    #    print(f'Element {i} : {endem[i]}')
 
     #------Finner maxmoment for hvert element-----
     max_m = max_moment(endem, nelem, elem, nlast, last, npunlast, punlast, elementlengder)
@@ -76,8 +77,12 @@ def main():
     max_n = max_aksial(nelem, endem)
 
     #-----Finner flytspenningen for elementene-------
-    fy = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI, EA)
-    print(fy)
+    sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI, EA)
+    sigma = [sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i]
+    
+    #-----Tverrsnittsdimensjonene etter iterasjon-----
+    #tverr = iterasjon(sigma, nelem, elem, geometri)
+    #print('\nTversnitt etter itterasjon')
 
     #-----Skriver ut hva rotasjonen ble i de forskjellige nodene-----
     skalering = 50
@@ -87,6 +92,6 @@ def main():
  
     #-----Plott deformert ramme-----
     plot_structure_def(ax_def, punkt, elem, 1, first_index, rot, file)
-    #plt.show()
+    plt.show()
 
 main()

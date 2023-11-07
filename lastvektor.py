@@ -3,18 +3,17 @@ import numpy as np
 from verktøy import *
 from matriser import *
 
-def lastvektor(r, npunkt, punkt, nelem, elem):
-    # Lager 1D-liste med 3 frihetsgrader * knutepunkter
+def lastvektor(r, npunkt, punkt, nelem, elem): # Lager 1D-liste med 3 frihetsgrader * knutepunkter
     R = np.zeros(npunkt * 3)
-    for i in range(nelem): # Itererer gjennom antall elementer
-        theta = vinkel(elem[i], punkt) # Finner vinkel i globalt system
-
-        temp_r = np.transpose(r[i]) @ np.transpose (transformasjonsmatrise(theta))
+    for i in range(nelem):                     # Itererer gjennom antall elementer
+        theta = vinkel(elem[i], punkt)         # Finner vinkel i globalt system
+        #Finner fastinnspeening for hvert element
+        temp_r = np.dot(np.transpose(r[i]), np.transpose(transformasjonsmatrise(theta)))
     
         k_1 = int(elem[i][0])
         k_2 = int(elem[i][1]) 
 
-        for j in range(3):
+        for j in range(3): #
             index = (3 * k_1) + j
             R[index] += temp_r[j]
             index = (3 * k_2) + j

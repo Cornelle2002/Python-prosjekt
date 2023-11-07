@@ -1,17 +1,21 @@
 import numpy as np
 
+#Formler for A og I er hentet fra formelsamling i Mekanikk 2
+
+#Andre arealmoment for I-profil
 def i_iprofil(h, b, f, s):
     #h - høyde
     #b - bredde
     #f - flenstykkelse
     #s - stegtykkelse
 
-    steg = (s * (h - (2*f))**3)/12
-    flens = (b * (f)**3)/12
-    tverr = flens + steg + flens
+    steg = (s * h**3)/12
+    flens = (b * f**3)/12
+    tverr = flens + steg + flens 
 
     return tverr
 
+#Andre arealmoment for Boks-profil
 def i_kvadrat(h, b, t):
     #h - ramme lengde
     #b - bredde
@@ -23,6 +27,7 @@ def i_kvadrat(h, b, t):
 
     return tverr
 
+#Andre arealmoment for Rør-profil
 def i_ror(d, t):
     #d - diameter ytre
     #t - tykkelse
@@ -31,18 +36,20 @@ def i_ror(d, t):
 
     return tverr
 
+#Areal for I-profil
 def a_iprofil(h, b, f, s):
     #h - høyde
     #b - bredde
     #f - flenstykkelse
     #s - stegtykkelse
 
-    steg = (h - 2*f) * s
+    steg = h * s
     flens = b * f
     areal = flens + steg + flens
 
     return areal
 
+#Areal for Boks-profil
 def a_kvadrat(h, b, t):
     #h - ramme lengde
     #b - bredde
@@ -54,6 +61,7 @@ def a_kvadrat(h, b, t):
 
     return areal
 
+#Areal for Rør-profil
 def a_ror(d, t):
     #d - diameter ytre
     #t - tykkelse

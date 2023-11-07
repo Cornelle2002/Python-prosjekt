@@ -4,11 +4,11 @@ import numpy as np
 def input(file_path):
 
     # Listene for å lagre verdiene
-    knutepunkt = []     # Lagrer knutepunkt-verdier
+    knutepunkt = []       # Lagrer knutepunkt-verdier
     fordelte_laster = []  # Lagrer fordelte laster
-    punktlaster = []    # Lagrer punktlaster
-    elementer = []      # Lagrer elementer
-    geometri = []      # Lagrer geometri
+    punktlaster = []      # Lagrer punktlaster
+    elementer = []        # Lagrer elementer
+    geometri = []         # Lagrer geometri
 
     # Setter standardverdi til False for om funksjonen skal skrive ut
     print_knutepunkt = False
@@ -28,7 +28,7 @@ def input(file_path):
 
             # Endrer verdiene til True hvis nøkkelord blir funnet
             if nokkelord[0] in line:
-                print_knutepunkt = True
+                print_knutepunkt = True 
                 continue
             elif nokkelord[1] in line:
                 print_elementer = True
@@ -45,13 +45,11 @@ def input(file_path):
 
             # Hvis nøkkelord er funnet, legg til verdiene i respektive liste
             if print_knutepunkt:
-                # Stopper når en tom linje i tekstfilen blir nådd
-                if not line.strip():
+                if not line.strip():                            # Stopper når en tom linje i tekstfilen blir nådd
                     print_knutepunkt = False
                 else:
-                    # Fjerner eventuelle ekstra mellomrom og linjeskift, og legger til verdiene i respektiv liste
-                    knutepunkt.append(line.strip().split(', '))
-            
+                    knutepunkt.append(line.strip().split(', ')) # Fjerner eventuelle ekstra mellomrom, linjeskift, og 
+                                                                # legger til verdiene som egne elementer i respektiv liste
             if print_elementer:
                 if not line.strip():
                     print_elementer = False
@@ -76,7 +74,7 @@ def input(file_path):
                 else:
                     geometri.append(line.strip().split(', '))
         
-        #FInner lengden/antall av alle verdiene
+        #Finner lengden/antall av alle verdiene
         Nknutepunkt = len(knutepunkt)   
         Nelemeter = len(elementer)
         Nfordelt = len(fordelte_laster)
@@ -93,15 +91,12 @@ def float_char(liste):
     
     # Går gjennom hver rad i listen
     for j, rows in enumerate(liste):
-        # Går gjennom hver element i hver rad
-        for elem, i in enumerate(rows):
-            # Konverterer elementet til en liste av tegn
-            li = list(i)
+        for elem, i in enumerate(rows): # Går gjennom hver element i hver rad
+            li = list(i)                # Konverterer elementet til en liste av tegn
             
             # Sjekker om det første tegnet i elementet er en representasjon av et heltall
             if li[0] in int_list:
-                # Konverterer elementet til flyttall og oppdaterer det i listen
-                liste[j][elem] = float(i)
+                liste[j][elem] = float(i) # Konverterer elementet til flyttall og oppdaterer det i listen
     
     # Returnerer den oppdaterte listen med flyttall
     return liste
