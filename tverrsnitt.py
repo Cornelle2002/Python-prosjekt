@@ -11,6 +11,7 @@ def i_iprofil(h, b, f, s):
 
     steg = (s * h**3)/12
     flens = (b * f**3)/12
+
     tverr = flens + steg + flens 
 
     return tverr

@@ -26,6 +26,7 @@ def main():
  
     # -----Leser input-data-----
     file = 'input.txt'
+    
     k, e, f_l, p, g, nk, ne, nf_l, npu = input(file)
  
     #Kaller funksjonen og lagrer oppdatert resultat med riktig verdier                           
