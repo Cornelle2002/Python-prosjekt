@@ -15,8 +15,6 @@ from plot import *
 from flyt import * 
 from iterasjon import * 
 
-
-
 # -----Rammeanalyse-----
 def main():
     # -----Initialiserer figurer-----
@@ -42,7 +40,7 @@ def main():
     npunlast = npu
 
     # -----Plott initalramme-----
-    #plot_structure(ax_init, punkt, elem, 1, first_index, file)
+    plot_structure(ax_init, punkt, elem, 1, first_index, file)
 
     # -----Regner ut lengder til elementene------
     elementlengder = lengder(punkt, elem, nelem)
@@ -51,14 +49,11 @@ def main():
 
     # -----Fastinnspenningsmomentene------
     r = fastinnspenningskrefter(nelem, elem, nlast, last, npunlast, punlast, geometri, elementlengder)
-    #print(len(r))
-    #print(r) 
     
     # -----Setter opp lastvektor-----
     R = lastvektor(r, npunkt, punkt, nelem, elem)
     R1 = punktkrefter(elem, npunkt, punkt, npunlast, punlast, elementlengder)
     tot_R = np.matrix(R1 - R)
-
 
     # ------Setter opp systemstivhetsmatrisen-----
     K = globalStivhetsmatrise(npunkt, punkt, nelem, elem, geometri, EI, EA, elementlengder)
@@ -67,11 +62,11 @@ def main():
     K = randbetingelser(npunkt, punkt, K)
     
     # -----Løser ligningssystemet------
-    L = np.linalg.inv(K)*np.transpose(tot_R)
+    L = np.linalg.inv(K)*np.transpose(tot_R)    
 
     #------Finner endemoment for hvert element-----
     endeK = endekrefter(punkt, nelem, elem, L, r, EI, EA)
-
+    
     #------Finner maxmoment for hvert element-----
     max_m = max_moment(endeK, nelem, elem, nlast, last, npunlast, punlast, elementlengder)
     max_sk = max_skjaer(nelem, endeK)
@@ -81,21 +76,18 @@ def main():
     plotting(endeK, nelem, nlast, last, npunlast, punlast, elementlengder)
 
     #-----Finner flytspenningen for elementene-------
-    #sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI, EA)
-    #sigma = [sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i]
+    sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i = sigma_flyt(max_m, max_n, nelem, elem, geometri, EI, EA)
+    sigma = [sigma_ho, sigma_jack, sigma_ver, sigma_k, sigma_i]
     
     #-----Tverrsnittsdimensjonene etter iterasjon-----
-    #tverr = iterasjon(sigma, nelem, elem, geometri)
-    #print('\nTversnitt etter itterasjon')
-
+    tverr = iterasjon(sigma, nelem, elem, geometri)
+    
     #-----Skriver ut hva rotasjonen ble i de forskjellige nodene-----
     skalering = 50
     rot = rotasjoner(npunkt, L, skalering)
-    #print("Rotasjoner i de ulike punktene:")
-    #print(rot)
- 
+     
     #-----Plott deformert ramme-----
-    #plot_structure_def(ax_def, punkt, elem, 1, first_index, rot, file)
+    plot_structure_def(ax_def, punkt, elem, 1, first_index, rot, file)
     plt.show()
 
 main()
