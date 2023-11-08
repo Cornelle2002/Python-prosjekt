@@ -1,5 +1,4 @@
 import numpy as np
-from tabulate import tabulate
 
 def lengder(knutepunkt, element, nelem):
  
